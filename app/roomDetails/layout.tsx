@@ -5,8 +5,8 @@ import Image from 'next/image'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-    title: 'Responsive Layout App',
-    description: 'App with responsive header, sidebar and footer',
+    title: 'Room Details',
+    description: 'Room Details page',
 }
 
 export default function roomLayout({
