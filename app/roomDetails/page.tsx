@@ -5,7 +5,9 @@ import RoomInfo from '../components/roominfo'
 import Analytics from '../components/Analytics'
 import { useRouter } from 'next/navigation'
 import MeetingSection from "../components/MeetingSection";
-const meetings = [
+
+export default function Home() {
+    const meetings = [
     {
         department: "Oilfield Chemical...",
         title: "Meeting title",
@@ -15,16 +17,12 @@ const meetings = [
         image: "../assets/building.jpg", // Place a dummy image in public folder
     },
 ];
-export const meetingData = {
+    const meetingData = {
     pending: meetings,
     inProgress: meetings,
     upcoming: [meetings[0], meetings[0]],
     previous: [meetings[0], meetings[0], meetings[0]],
 };
-
-
-
-export default function Home() {
     const router = useRouter();
     const roomData = {
         name: 'Room 101',
@@ -51,21 +49,6 @@ export default function Home() {
             thisMonth: 48820,
             lastMonth: 26498
         }
-    }
-
-    const meetings = {
-        inProgress: [
-            { id: 1, title: 'Meeting title', time: '3/9/2025 3:30PM', host: 'Muhannad', type: 'Regular' }
-        ],
-        upcoming: [
-            { id: 2, title: 'Meeting title', time: '3/9/2025 3:30PM', host: 'Muhannad', type: 'Regular' },
-            { id: 3, title: 'Meeting title', time: '3/9/2025 3:30PM', host: 'Muhannad', type: 'Regular' }
-        ],
-        previous: [
-            { id: 4, title: 'Meeting title', time: '3/9/2025 3:30PM', host: 'Muhannad', type: 'Regular' },
-            { id: 5, title: 'Meeting title', time: '3/9/2025 3:30PM', host: 'Muhannad', type: 'Regular' },
-            { id: 6, title: 'Meeting title', time: '3/9/2025 3:30PM', host: 'Muhannad', type: 'Regular' }
-        ]
     }
 
     return (

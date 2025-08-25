@@ -12,7 +12,7 @@ export default function Home() {
       host: "Muhanna...",
       time: "30/1/2025 3:30PM",
       type: "Regular",
-      image: "/building.jpg", // Must be in public folder
+      image: "/assets/building.jpg",
     },
   ];
 
