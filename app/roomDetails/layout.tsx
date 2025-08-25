@@ -26,7 +26,7 @@ export default function roomLayout({
                             <div className="flex items-center">
                                 <div className="flex items-center">
                                     <Image
-                                        src="/assets/logo.PNG"
+                                        src="/assets/logo.png"
                                         alt="Platform"
                                         width={60}
                                         height={60}

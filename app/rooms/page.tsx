@@ -1,7 +1,7 @@
 'use client';
 import Link from 'next/link';
 import RoomCard from '../components/RoomCard'
-import  { useRouter } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 
 
 interface Room {
@@ -36,23 +36,23 @@ export default function RoomsPage() {
             <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 gap-4">
                 <div className='flex flex-row items-center space-x-2'>
                     <Link href={'/main'}>
-                    <button 
-                        className="flex items-center text-black hover:text-gray-700 cursor-pointer"
-                        aria-label="Go back"
-                    >
-                        <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            className="h-8 w-8 sm:h-10 sm:w-10 mr-1"
-                            viewBox="0 0 20 20"
-                            fill="currentColor"
+                        <button
+                            className="flex items-center text-black hover:text-gray-700 cursor-pointer"
+                            aria-label="Go back"
                         >
-                            <path
-                                fillRule="evenodd"
-                                d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z"
-                                clipRule="evenodd"
-                            />
-                        </svg>
-                    </button>
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                className="h-8 w-8 sm:h-10 sm:w-10 mr-1"
+                                viewBox="0 0 20 20"
+                                fill="currentColor"
+                            >
+                                <path
+                                    fillRule="evenodd"
+                                    d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z"
+                                    clipRule="evenodd"
+                                />
+                            </svg>
+                        </button>
                     </Link>
                     <h1 className="text-xl sm:text-2xl md:text-3xl font-bold text-black">
                         Oilfield Chemicals R&D institute COSL
