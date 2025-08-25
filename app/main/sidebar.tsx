@@ -42,7 +42,7 @@ export function Sidebar() {
                 <div className={`flex flex-row justify-start items-start ml-8 lg:ml-0`}>
                     <Image
                         src="/assets/logo.PNG"
-                        alt="Platform"
+                        alt="Logo"
                         width={60}
                         height={60}
                         className="object-contain max-w-full max-h-full ml-6 mt-6"
