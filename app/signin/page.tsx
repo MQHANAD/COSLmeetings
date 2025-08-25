@@ -42,7 +42,7 @@ export default function Home() {
                         <div className="absolute inset-0 flex items-start justify-start p-4">
                             <Image
                                 src="/assets/logo.PNG"
-                                alt="Platform"
+                                alt="Logo"
                                 width={60}
                                 height={60}
                                 className="object-contain max-w-full max-h-full"
