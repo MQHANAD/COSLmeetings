@@ -63,17 +63,29 @@ export default function Home() {
                         </div>
 
                         {/* Times */}
+                        {/* Times */}
                         <div className="flex flex-col gap-3">
                             <div className="font-medium">Monday, July {selectedDate}</div>
                             {availableTimes.map((time) => (
-                                <div className="filter">
-                                    <input className="btn filter-reset bg-white text-black border-whtie shadow-2xs" type="radio" name="metaframeworks" aria-label="All" />
-                                    <input className="btn bg-white text-black border-whtie shadow-2xs" type="radio" name="metaframeworks" aria-label={time} key={time} />
+                                <div className="filter" key={time}> {/* <-- key added here */}
+                                    <input
+                                        className="btn filter-reset bg-white text-black border-whtie shadow-2xs"
+                                        type="radio"
+                                        name="metaframeworks"
+                                        aria-label="All"
+                                    />
+                                    <input
+                                        className="btn bg-white text-black border-whtie shadow-2xs"
+                                        type="radio"
+                                        name="metaframeworks"
+                                        aria-label={time}
+                                    />
                                 </div>
-
                             ))}
                             <Link href={'/meetingInfo'}>
-                                <button className="btn btn-primary mt-4 w-40" disabled={!selectedTime}>Book</button>
+                                <button className="btn btn-primary mt-4 w-40" disabled={!selectedTime}>
+                                    Book
+                                </button>
                             </Link>
                         </div>
                     </div>

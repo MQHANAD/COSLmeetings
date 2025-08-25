@@ -12,7 +12,6 @@ export default function LandingPage() {
   const [speed, setSpeed] = useState(100);
 
   useEffect(() => {
-    let timer;
     const handleTyping = () => {
       const i = displayedText.length;
       if (!isDeleting && i < fullText.length) {
@@ -31,7 +30,7 @@ export default function LandingPage() {
       }
     };
 
-    timer = setTimeout(handleTyping, speed);
+    const timer = setTimeout(handleTyping, speed);
     return () => clearTimeout(timer);
   }, [displayedText, isDeleting]);
 
