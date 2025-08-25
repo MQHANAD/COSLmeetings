@@ -2,6 +2,8 @@
 
 A web application developed during a 2-month summer internship at COSL in China. This system allows users to manage conference rooms, schedule meetings, and view analytics for efficient utilization of resources. Built with Next.js, Tailwind CSS, and Framer Motion for animations.
 
+# Deployed at https://cosl-meetings.vercel.app/
+
 ## Features
 
 ### Mandatory Modules
@@ -43,10 +45,3 @@ A web application developed during a 2-month summer internship at COSL in China.
 ## License
 
 MIT License
-
-
-
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
