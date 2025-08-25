@@ -16,7 +16,7 @@ export default function Analytics({ data }: Props) {
         <section className="mb-8 text-black">
 
             <h2 className="text-xl font-semibold mb-4">Analytics</h2>
-            <div className="bg-[rgba(255,255,255,0.1)] flex items-center justify-center z-10 pointer-events-none">
+            <div className="bg-[rgba(255,255,255,0)] flex items-center justify-center z-10 pointer-events-none">
                 <div className="text-2xl font-bold text-gray-600 bg-white bg-opacity-90 px-6 py-3 rounded-lg shadow-lg">
                     Coming Soon
                 </div>

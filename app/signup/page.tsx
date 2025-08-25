@@ -56,7 +56,7 @@ export default function Home() {
                     <h2 className="text-2xl font-bold mb-6 text-gray-800">Welcome to COSL Meetings</h2>
 
                     <form className="space-y-4">
-                         <div>
+                        <div>
                             <label className="block text-sm font-medium text-gray-700">Email Address</label>
                             <input
                                 type="text"
@@ -64,7 +64,7 @@ export default function Home() {
                                 placeholder="Enter your email address"
                             />
                         </div>
-                         <div>
+                        <div>
                             <label className="block text-sm font-medium text-gray-700">Full Name</label>
                             <input
                                 type="text"
@@ -90,13 +90,14 @@ export default function Home() {
                             />
                         </div>
 
-
-                        <button
-                            type="submit"
-                            className="w-full bg-[#0E98D8] text-white py-2 rounded-md hover:bg-[#2F9FDF] transition duration-200"
-                        >
-                            Sign Up
-                        </button>
+                        <Link href={'/main'}>
+                            <button
+                                type="submit"
+                                className="w-full bg-[#0E98D8] text-white py-2 rounded-md hover:bg-[#2F9FDF] transition duration-200 cursor-pointer"
+                            >
+                                Sign Up
+                            </button>
+                        </Link>
                     </form>
 
                     <p className="mt-4 text-sm text-center text-gray-600">

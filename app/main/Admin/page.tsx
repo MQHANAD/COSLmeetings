@@ -1,5 +1,6 @@
 import React from 'react';
 import BuildingTable from '../../components/BuildingTable'
+import Link from 'next/link';
 
 export interface Building {
   imageUrl: string
@@ -24,7 +25,9 @@ export default function BuildingsPage() {
     <div className="pt-6 pl-6 pr-6">
       <h1 className="text-4xl font-bold mb-6 text-black">My Buildings</h1>
       <div className="flex justify-end mb-4">
-        <button className="btn btn-primary bg-[#0E98D8] border-[#0E98D8] shadow-[#0E98D8] shadow-2xs">ADD NEW Building</button>
+        <Link href={'/addingBuilding'}>
+          <button className="btn btn-primary bg-[#0E98D8] border-[#0E98D8] shadow-[#0E98D8] shadow-2xs">ADD NEW Building</button>
+        </Link>
       </div>
       <BuildingTable buildings={dummyBuildings} />
     </div>

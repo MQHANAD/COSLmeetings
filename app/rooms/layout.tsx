@@ -55,7 +55,7 @@ export default function RoomLayout({
                                         className="h-5 w-5"
                                         fill="none"
                                         viewBox="0 0 24 24"
-                                        stroke="currentColor"
+                                        stroke="black"
                                     >
                                         <path
                                             strokeLinecap="round"
@@ -78,7 +78,7 @@ export default function RoomLayout({
                                                 className="h-5 w-5"
                                                 fill="none"
                                                 viewBox="0 0 24 24"
-                                                stroke="currentColor"
+                                                stroke="black"
                                             >
                                                 <path
                                                     strokeLinecap="round"
@@ -140,7 +140,7 @@ export default function RoomLayout({
                     </header>
 
                     {/* Main Content Area */}
-                    <div className="flex flex-1 h-0.5">
+                    <div className="flex flex-1 h-0.5 bg-white">
                         <main className="flex-1 p-4 md:p-6 overflow-y-auto bg-[rgba(255,255,255,0)] z-[35] md:h-[100lvh] ml-3">
                             <div className="pb-16 md:pb-0">
                                 {children}

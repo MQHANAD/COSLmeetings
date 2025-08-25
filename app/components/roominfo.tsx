@@ -1,6 +1,7 @@
 // components/RoomInfo.tsx
 import React from 'react'
 import Image from 'next/image';
+import Link from 'next/link';
 
 type Props = {
     data: {
@@ -72,7 +73,10 @@ export default function RoomInfo({ data }: Props) {
                 </div>
                 <div className=" flex gap-2">
                     <button className="btn btn-primary bg-[#0E98D8] border-[#0E98D8] shadow-2xs">Edit</button>
+                    <Link href={'/booking'}>
                     <button className="btn btn-primary bg-[#0E98D8] border-[#0E98D8] shadow-2xs">Book</button>
+                    </Link>
+
                 </div>
             </div>
 

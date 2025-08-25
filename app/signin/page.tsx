@@ -82,12 +82,15 @@ export default function Home() {
                             <a href="#" className="text-sm text-[#0E98D8] hover:underline">Forgot Password ?</a>
                         </div>
 
-                        <button
-                            type="submit"
-                            className="w-full bg-[#0E98D8] text-white py-2 rounded-md hover:bg-[#2F9FDF] transition duration-200"
-                        >
-                            Sign In
-                        </button>
+                        <Link href={'/main'}>
+                            <button
+                                type="submit"
+                                className="w-full bg-[#0E98D8] text-white py-2 rounded-md hover:bg-[#2F9FDF] transition duration-200 cursor-pointer"
+                            >
+                                Sign In
+
+                            </button>
+                        </Link>
                     </form>
 
                     <p className="mt-4 text-sm text-center text-gray-600">

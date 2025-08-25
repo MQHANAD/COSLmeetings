@@ -1,4 +1,5 @@
 'use client';
+import Link from 'next/link';
 import RoomCard from '../components/RoomCard'
 import  { useRouter } from 'next/navigation';
 
@@ -34,8 +35,8 @@ export default function RoomsPage() {
         <div className="p-16">
             <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 gap-4">
                 <div className='flex flex-row items-center space-x-2'>
+                    <Link href={'/main'}>
                     <button 
-                        onClick={() => router.back()} 
                         className="flex items-center text-black hover:text-gray-700 cursor-pointer"
                         aria-label="Go back"
                     >
@@ -52,13 +53,16 @@ export default function RoomsPage() {
                             />
                         </svg>
                     </button>
+                    </Link>
                     <h1 className="text-xl sm:text-2xl md:text-3xl font-bold text-black">
                         Oilfield Chemicals R&D institute COSL
                     </h1>
                 </div>
-                <button className="btn btn-primary bg-[#0E98D8] shadow-2xs border-[#0E98D8] hover:bg-sky-600 w-full sm:w-auto">
-                    ADD NEW Room
-                </button>
+                <Link href={'/addingRoom'}>
+                    <button className="btn btn-primary bg-[#0E98D8] shadow-2xs border-[#0E98D8] hover:bg-sky-600 w-full sm:w-auto">
+                        ADD NEW Room
+                    </button>
+                </Link>
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 mb-10">

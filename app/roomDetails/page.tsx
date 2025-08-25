@@ -73,7 +73,7 @@ export default function Home() {
             <Head>
                 <title>Oilfield Chemicals R&D Institute</title>
             </Head>
-            <main className="p-4 max-w-7xl mx-auto pl-32 pr-32">
+            <main className="p-4 max-w-7xl mx-auto pl-32 pr-32 pt-16">
                 <div className='flex flex-row items-center space-x-2 mb-4'>
                     <button
                         onClick={() => router.back()}

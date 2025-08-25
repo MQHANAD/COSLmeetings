@@ -5,8 +5,8 @@ import Image from 'next/image'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-    title: 'Responsive Layout App',
-    description: 'App with responsive header, sidebar and footer',
+    title: 'COSL Meeting - Adding Room',
+    description: 'add your building details here',
 }
 
 export default function roomLayout({
@@ -17,7 +17,7 @@ export default function roomLayout({
     return (
         <html lang="en">
             <body className={inter.className}>
-                <div className="fixed inset-0 flex flex-col">
+                <div className="fixed inset-0 flex flex-col bg-white">
                     {/* Responsive Header */}
                     <header className="fixed top-0 left-0 right-0 h-14 bg-white text-black shadow-md z-[40] flex items-center px-4">
                         <div className="flex flex-1 items-center justify-between">
@@ -140,7 +140,7 @@ export default function roomLayout({
                     </header>
 
                     {/* Main Content Area */}
-                    <div className="flex flex-1 h-0.5 bg-white">
+                    <div className="flex flex-1 h-0.5">
                         <main className="flex-1 p-4 md:p-6 overflow-y-auto bg-[rgba(255,255,255,0)] z-[35] md:h-[100lvh] ml-3">
                             <div className="pb-16 md:pb-0">
                                 {children}

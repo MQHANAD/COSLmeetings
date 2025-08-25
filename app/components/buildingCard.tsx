@@ -14,7 +14,7 @@ export default function BuildingCard({
   buildingNumber,
   address,
   image,
-  href = '#',
+  href = '/rooms',
 }: BuildingCardProps) {
   return (
     <Link href={href} className="block">
