@@ -41,7 +41,7 @@ export default function Home() {
                         </div>
                         <div className="absolute inset-0 flex items-start justify-start p-4">
                             <Image
-                                src="/assets/logo.PNG"
+                                src="/assets/logo.png"
                                 alt="Logo"
                                 width={60}
                                 height={60}

@@ -41,7 +41,7 @@ export function Sidebar() {
       `}>
                 <div className={`flex flex-row justify-start items-start ml-8 lg:ml-0`}>
                     <Image
-                        src="/assets/logo.PNG"
+                        src="/assets/logo.png"
                         alt="Logo"
                         width={60}
                         height={60}
