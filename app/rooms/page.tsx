@@ -2,6 +2,7 @@
 import Link from 'next/link';
 import RoomCard from '../components/RoomCard'
 import { useRouter } from 'next/navigation';
+import { useEffect, useState } from 'react';
 
 
 interface Room {
@@ -13,21 +14,31 @@ interface Room {
     status: 'Available' | 'Out of Service' | 'Under Maintenance'
 }
 
-const rooms: Room[] = [
-    { id: 1, imageUrl: 'assets/room.jpg', roomNumber: 'Room number 101', buildingNumber: 'Building number', capacity: 12, status: 'Available' },
-    { id: 3, imageUrl: 'assets/room.jpg', roomNumber: 'Room number 101', buildingNumber: 'Building number', capacity: 12, status: 'Available' },
-    { id: 2, imageUrl: 'assets/room.jpg', roomNumber: 'Room number 101', buildingNumber: 'Building number', capacity: 12, status: 'Available' },
 
-    { id: 4, imageUrl: 'assets/room.jpg', roomNumber: 'Room number 101', buildingNumber: 'Building number', capacity: 12, status: 'Under Maintenance' },
-    { id: 5, imageUrl: 'assets/room.jpg', roomNumber: 'Room number 101', buildingNumber: 'Building number', capacity: 12, status: 'Out of Service' },
-    { id: 6, imageUrl: 'assets/room.jpg', roomNumber: 'Room number 101', buildingNumber: 'Building number', capacity: 12, status: 'Under Maintenance' },
-    { id: 7, imageUrl: 'assets/room.jpg', roomNumber: 'Room number 101', buildingNumber: 'Building number', capacity: 12, status: 'Out of Service' },
-    { id: 8, imageUrl: 'assets/room.jpg', roomNumber: 'Room number 101', buildingNumber: 'Building number', capacity: 12, status: 'Under Maintenance' },
-    { id: 9, imageUrl: 'assets/room.jpg', roomNumber: 'Room number 101', buildingNumber: 'Building number', capacity: 12, status: 'Out of Service' },
-]
 
 export default function RoomsPage() {
     const router = useRouter();
+    const [rooms, setRooms] = useState<Room[]>([]);
+    const [isLoading, setIsLoading] = useState(true);
+    const [error, setError] = useState('');
+
+    useEffect(() => {
+        fetch('/api/rooms')
+            .then((res) => {
+                if (!res.ok) throw new Error('Failed to fetch rooms');
+                return res.json();
+            })
+            .then((data) => {
+                setRooms(data);
+                setIsLoading(false);
+            })
+            .catch((err) => {
+                console.error(err);
+                setError(err.message);
+                setIsLoading(false);
+            });
+    }, []);
+
     const availableRooms = rooms.filter((room) => room.status === 'Available')
     const unavailableRooms = rooms.filter((room) => room.status !== 'Available')
 
@@ -65,7 +76,12 @@ export default function RoomsPage() {
                 </Link>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 mb-10">
+            {isLoading && <p className="text-black">Loading rooms...</p>}
+            {error && <p className="text-red-500">Error: {error}</p>}
+
+            {!isLoading && !error && (
+                <>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 mb-10">
                 {availableRooms.map((room) => (
                     <RoomCard key={room.id} room={room} />
                 ))}
@@ -77,6 +93,8 @@ export default function RoomsPage() {
                     <RoomCard key={room.id} room={room} />
                 ))}
             </div>
+                </>
+            )}
         </div>
     )
 }

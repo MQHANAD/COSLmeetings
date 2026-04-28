@@ -24,7 +24,7 @@ export default function RoomCard({ room }: Props) {
     const isUnavailable = room.status !== 'Available'
 
     return (
-        <Link href={"/roomDetails"} className={`card bg-base-100 shadow-sm ${isUnavailable ? 'opacity-50 bg-white' : 'bg-white rounded-lg shadow-md overflow-hidden cursor-pointer transform transition duration-300 ease-in-out hover:shadow-lg active:scale-95'
+        <Link href={`/roomDetails?roomId=${room.id}`} className={`card bg-base-100 shadow-sm ${isUnavailable ? 'opacity-50 bg-white' : 'bg-white rounded-lg shadow-md overflow-hidden cursor-pointer transform transition duration-300 ease-in-out hover:shadow-lg active:scale-95'
             }`}>
             <figure>
                 <img src={room.imageUrl} alt={room.roomNumber} className="w-full h-40 object-cover text-black" />

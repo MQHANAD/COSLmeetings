@@ -3,11 +3,26 @@
 import React, { useState, ChangeEvent } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
+import { useSearchParams } from 'next/navigation';
+import { Suspense } from 'react';
 
-export default function BuildingForm() {
+function BuildingFormContent() {
     const [file, setFile] = useState<File | null>(null);
     const [selectedEquipments, setSelectedEquipments] = useState<string[]>([]);
+    const [title, setTitle] = useState('');
+    const [attendees, setAttendees] = useState('');
+    const [host, setHost] = useState('');
+    const [agenda, setAgenda] = useState('');
+    const [meetingType, setMeetingType] = useState('Meeting Type');
+    const [error, setError] = useState('');
+    const [isSubmitting, setIsSubmitting] = useState(false);
+    
     const router = useRouter();
+    const searchParams = useSearchParams();
+    
+    const roomId = searchParams.get('roomId');
+    const date = searchParams.get('date');
+    const time = searchParams.get('time');
 
     const equipmentOptions = [
         "Projector",
@@ -53,6 +68,43 @@ export default function BuildingForm() {
         setFile(selectedFile);
     };
 
+    const handleSubmit = async (e: React.FormEvent) => {
+        e.preventDefault();
+        setError('');
+        setIsSubmitting(true);
+
+        try {
+            const res = await fetch('/api/bookings', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    roomId: roomId || '1',
+                    date: date || '18',
+                    time: time || '5:30 PM',
+                    title,
+                    attendees,
+                    host,
+                    agenda,
+                    meetingType,
+                    equipments: selectedEquipments
+                }),
+            });
+
+            const data = await res.json();
+            if (!res.ok) {
+                throw new Error(data.error || 'Failed to create booking');
+            }
+
+            // Success, navigate back or to main
+            router.push('/main');
+        } catch (err: any) {
+            console.error(err);
+            setError(err.message);
+        } finally {
+            setIsSubmitting(false);
+        }
+    };
+
     return (
         <div className="flex flex-col items-center justify-center bg-[rgba(255,255,255,0)] p-4 text-black relative md:mt-6 mt-12">
             {/* Top left header */}
@@ -91,16 +143,18 @@ export default function BuildingForm() {
                     Please fill the following information
                 </p>
 
-                <form className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <input type="text" placeholder="Title" className="input input-bordered w-full bg-[#F4F4F5]" />
-                    <input type="text" placeholder="Invite Attenees" className="input input-bordered w-full bg-[#F4F4F5]" />
-                    <input type="text" placeholder="Host" className="input input-bordered w-full bg-[#F4F4F5]" />
-                    <input type="text" placeholder="Agenda" className="input input-bordered w-full bg-[#F4F4F5]" />
-                    <select defaultValue="Meetin Type" className="select w-full text-gray-500 bg-[#F4F4F5]">
+                {error && <div className="bg-red-100 text-red-600 p-3 rounded mb-4 text-center">{error}</div>}
+
+                <form className="grid grid-cols-1 md:grid-cols-2 gap-4" onSubmit={handleSubmit}>
+                    <input type="text" placeholder="Title" value={title} onChange={(e) => setTitle(e.target.value)} className="input input-bordered w-full bg-[#F4F4F5]" required />
+                    <input type="text" placeholder="Invite Attenees" value={attendees} onChange={(e) => setAttendees(e.target.value)} className="input input-bordered w-full bg-[#F4F4F5]" />
+                    <input type="text" placeholder="Host" value={host} onChange={(e) => setHost(e.target.value)} className="input input-bordered w-full bg-[#F4F4F5]" required />
+                    <input type="text" placeholder="Agenda" value={agenda} onChange={(e) => setAgenda(e.target.value)} className="input input-bordered w-full bg-[#F4F4F5]" />
+                    <select value={meetingType} onChange={(e) => setMeetingType(e.target.value)} className="select w-full text-gray-500 bg-[#F4F4F5]">
                         <option disabled={true}>Meeting Type</option>
-                        <option>Regular</option>
-                        <option>Project Review</option>
-                        <option>Training</option>
+                        <option value="Regular">Regular</option>
+                        <option value="Project Review">Project Review</option>
+                        <option value="Training">Training</option>
                     </select>
 
                     {/* Equipment Selection */}
@@ -177,17 +231,24 @@ export default function BuildingForm() {
                     )}
 
                     <div className="md:col-span-2 text-center mt-4">
-                        <Link href={'/main'}>
-                            <button
-                                type="submit"
-                                className="btn bg-[#0E98D8] hover:bg-sky-600 text-white px-24 md:px-32 rounded-xl"
-                            >
-                                Create
-                            </button>
-                        </Link>
+                        <button
+                            type="submit"
+                            disabled={isSubmitting}
+                            className="btn bg-[#0E98D8] hover:bg-sky-600 text-white px-24 md:px-32 rounded-xl"
+                        >
+                            {isSubmitting ? 'Creating...' : 'Create'}
+                        </button>
                     </div>
                 </form>
             </div>
         </div>
     );
+}
+
+export default function BuildingForm() {
+    return (
+        <Suspense fallback={<div>Loading...</div>}>
+            <BuildingFormContent />
+        </Suspense>
+    )
 }

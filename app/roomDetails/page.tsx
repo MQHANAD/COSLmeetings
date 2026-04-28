@@ -5,8 +5,10 @@ import RoomInfo from '../components/roominfo'
 import Analytics from '../components/Analytics'
 import { useRouter } from 'next/navigation'
 import MeetingSection from "../components/MeetingSection";
+import { useSearchParams } from 'next/navigation';
+import { Suspense } from 'react';
 
-export default function Home() {
+function RoomDetailsContent() {
     const meetings = [
     {
         department: "Oilfield Chemical...",
@@ -24,6 +26,8 @@ export default function Home() {
     previous: [meetings[0], meetings[0], meetings[0]],
 };
     const router = useRouter();
+    const searchParams = useSearchParams();
+    const roomId = searchParams.get('roomId');
     const roomData = {
         name: 'Room 101',
         status: 'Available',
@@ -79,7 +83,7 @@ export default function Home() {
                     <h1 className="text-2xl font-bold text-black">Oilfield Chemicals R&D institute COSL</h1>
                 </div>
 
-                <RoomInfo data={roomData} />
+                <RoomInfo data={roomData} roomId={roomId} />
 
                 <Analytics data={analytics} />
 
@@ -95,5 +99,13 @@ export default function Home() {
                 </div>
             </main>
         </>
+    )
+}
+
+export default function Home() {
+    return (
+        <Suspense fallback={<div>Loading...</div>}>
+            <RoomDetailsContent />
+        </Suspense>
     )
 }

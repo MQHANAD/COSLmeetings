@@ -2,15 +2,19 @@
 import { useState } from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
+import { useSearchParams } from 'next/navigation';
+import { Suspense } from 'react';
 
 
 
 const availableDates = [14, 15, 16, 18, 20, 21, 25, 26, 27, 28, 29, 30];
 const availableTimes = ['5:30 PM', '6:30 PM', '7:30 PM', '8:30 PM', '9:30 PM'];
 
-export default function Home() {
+function BookingContent() {
     const [selectedDate, setSelectedDate] = useState<number | null>(18);
     const [selectedTime, setSelectedTime] = useState<string | null>('5:30 PM');
+    const searchParams = useSearchParams();
+    const roomId = searchParams.get('roomId') || '1';
 
     const handleDateSelect = (day: number) => {
         setSelectedDate(day);
@@ -30,7 +34,7 @@ export default function Home() {
             <div className="bg-white rounded-2xl shadow-lg grid grid-cols-1 md:grid-cols-3 w-full max-w-6xl">
                 {/* Room Info */}
                 <div className="p-8 col-span-1 border-r">
-                    <h1 className="text-2xl font-bold">Room 101</h1>
+                    <h1 className="text-2xl font-bold">Room {roomId}</h1>
                     <ul className="mt-4 space-y-2 text-gray-700">
                         <li>• Address</li>
                         <li>• Next Meeting will be Today at 9:00am</li>
@@ -69,20 +73,22 @@ export default function Home() {
                             {availableTimes.map((time) => (
                                 <div className="filter" key={time}> {/* <-- key added here */}
                                     <input
-                                        className="btn filter-reset bg-white text-black border-whtie shadow-2xs"
+                                        className="btn filter-reset bg-white text-black border-white shadow-2xs"
                                         type="radio"
                                         name="metaframeworks"
                                         aria-label="All"
                                     />
                                     <input
-                                        className="btn bg-white text-black border-whtie shadow-2xs"
+                                        className="btn bg-white text-black border-white shadow-2xs"
                                         type="radio"
                                         name="metaframeworks"
                                         aria-label={time}
+                                        checked={selectedTime === time}
+                                        onChange={() => handleTimeSelect(time)}
                                     />
                                 </div>
                             ))}
-                            <Link href={'/meetingInfo'}>
+                            <Link href={`/meetingInfo?roomId=${roomId}&date=${selectedDate}&time=${selectedTime}`}>
                                 <button className="btn btn-primary mt-4 w-40" disabled={!selectedTime}>
                                     Book
                                 </button>
@@ -93,4 +99,12 @@ export default function Home() {
             </div>
         </div>
     );
+}
+
+export default function Home() {
+    return (
+        <Suspense fallback={<div>Loading...</div>}>
+            <BookingContent />
+        </Suspense>
+    )
 }

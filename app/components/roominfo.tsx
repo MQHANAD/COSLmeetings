@@ -12,9 +12,10 @@ type Props = {
         equipment: string[]
         nextMeeting: string
     }
+    roomId?: string | null
 }
 
-export default function RoomInfo({ data }: Props) {
+export default function RoomInfo({ data, roomId }: Props) {
     return (
         <section className="mb-8 text-black">
             <div className="grid md:grid-cols-3 gap-4 mb-20">
@@ -73,7 +74,7 @@ export default function RoomInfo({ data }: Props) {
                 </div>
                 <div className=" flex gap-2">
                     <button className="btn btn-primary bg-[#0E98D8] border-[#0E98D8] shadow-2xs">Edit</button>
-                    <Link href={'/booking'}>
+                    <Link href={`/booking${roomId ? '?roomId=' + roomId : ''}`}>
                     <button className="btn btn-primary bg-[#0E98D8] border-[#0E98D8] shadow-2xs">Book</button>
                     </Link>
 
